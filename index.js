@@ -112,11 +112,11 @@ async function run() {
        const id = req.params.id;
        const query = { _id: new ObjectId(id)}
 
-       const options = {
-        // Include only the `title` and `imdb` fields in the returned document
-        projection: { price_per_night: 1, room_type: 1, 
-        img: 1, room_size: 1, description: 1, special_offers: 1 },
-      };
+      //  const options = {
+      //   // Include only the `title` and `imdb` fields in the returned document
+      //   projection: { price_per_night: 1, room_type: 1, 
+      //   img: 1, room_size: 1, description: 1},
+      // };
 
        const result = await roomCollection.findOne(query, options);
        res.send(result);
@@ -124,7 +124,7 @@ async function run() {
 
     // app.get('/rooms/:id', async(req, res) =>{
     //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) }
+    //   const query = { _id: new ObjectId(id) } special_offers: 1 
 
     //   const options = {
     //     // Include only the `title` and `imdb` fields in the returned document
