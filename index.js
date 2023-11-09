@@ -122,20 +122,15 @@ async function run() {
        res.send(result);
     })
 
-    // app.get('/rooms/:id', async(req, res) =>{
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) }  
-
-    //   const options = {
-    //     // Include only the `title` and `imdb` fields in the returned document
-    //     projection: { price_per_night: 1, room_type: 1, img: 1 },
-    //   };
-
-    //   const result = await roomCollection.findOne(query, options);
-    //   res.send(result);
-    // })
-
+  
     //bookings
+
+    app.get('/bookings', async(req, res) => {
+      // console.log(req.query);
+      const result = await bookingCollection.find().toArray();
+      res.send(result);
+    })
+
     app.post('/bookings', async(req, res) => {
       const booking = req.body;
       console.log(booking);
