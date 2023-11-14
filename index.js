@@ -131,7 +131,7 @@ async function run() {
       if(req.query?.email){
         query = {email: req.query.email}
       }
-      const result = await bookingCollection.find().toArray();
+      const result = await bookingCollection.find(query).toArray();
       res.send(result);
     })
 
@@ -141,6 +141,14 @@ async function run() {
       const result = await bookingCollection.insertOne(booking);
       res.send(result);
     });
+
+ 
+    app.delete('/bookings/:id', async(req, res) =>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await bookingCollection.deleteOne(query);
+      res.send(result);
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
